@@ -44,11 +44,12 @@ app.post('/webhook/', function (req, res) {
             }
             if (text === 'hello')
                 {
-                    sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type ... to get started.")
+                    sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type  to get started.")
                     continue
                 }
             if (text === 'location')
                 {
+                    
                    askLocation()
                    continue
                 }
@@ -134,19 +135,57 @@ function sayHello(sender, text)
     
 }
 
+//function asking for location of business.
 function askLocation() {
     messageData = {
         "text":"What is your location?",
         "quick_replies":[{
             "content_type":"text",
             "title":"Raleigh",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RALEIGH"
+            "payload":"Raleigh"
         },
         {
             "content_type":"text",
             "title":"Chapel Hill",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_CHAPEL_HILL"
+            "payload":"Chapel Hill"
         }]
+    }
+      request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+function askIndustry() {
+    messageData = {
+        "text":"What type of business are you looking for?",
+        "quick_replies":[{
+            "content_type":"text",
+            "title":"Hair Salon",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_SALON"
+        },
+        {
+            "content_type":"text",
+            "title":"Mechanic",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_MECHANIC"
+        },
+        {
+            "content_type":"text",
+            "title":"Restaurant",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RESTAURANT"
+        }]
+        
     }
       request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
