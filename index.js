@@ -47,6 +47,11 @@ app.post('/webhook/', function (req, res) {
                     sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type ... to get started.")
                     continue
                 }
+            if (text === 'location')
+                {
+                   askLocation()
+                   continue
+                }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
     
@@ -84,6 +89,7 @@ function sendTextMessage(sender, text) {
     })
 }
 
+//doesn't like classes for some reason
 //class to define a business - not sure about the no arg versions
 /*class Business = class Business {
     constructor(l, n , i){
@@ -128,6 +134,36 @@ function sayHello(sender, text)
     
 }
 
+function askLocation() {
+    messageData = {
+        "text":"What is your location?",
+        "quick_replies":[{
+            "content_type":"text",
+            "title":"Raleigh",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RALEIGH"
+        },
+        {
+            "content_type":"text",
+            "title":"Chapel Hill",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_CHAPEL_HILL"
+        }]
+    }
+      request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
 //Send a Test Message Back as Two Cards
 function sendGenericMessage(sender) {
     messageData = {
