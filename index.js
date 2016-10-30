@@ -85,7 +85,7 @@ function sendTextMessage(sender, text) {
 }
 
 //class to define a business - not sure about the no arg versions
-function Business = class Business {
+class Business = class Business {
     constructor(l, n , i){
         this.location = l;
         this.name = n;
