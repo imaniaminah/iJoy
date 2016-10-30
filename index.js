@@ -42,13 +42,13 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-            /*if (text === 'hello')
+            if (text === 'hello')
                 {
                     sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type ... to get started.")
                     continue
                 }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-        }*/
+        }
     
         if (event.postback) {
             text = JSON.stringify(event.postback)
