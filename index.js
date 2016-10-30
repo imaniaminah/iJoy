@@ -85,8 +85,8 @@ function sendTextMessage(sender, text) {
 }
 
 //class to define a business - not sure about the no arg versions
-class Business = class Business {
-    contstructor(l, n , i){
+function Business = class Business {
+    constructor(l, n , i){
         this.location = l;
         this.name = n;
         this.industry = i;
@@ -95,7 +95,7 @@ class Business = class Business {
 
 //unnamed class that takes arguements and creates business object
 class Business = class {
-    contstructor(l, n , i){
+    constructor(l, n , i){
         this.location = l;
         this.name = n;
         this.industry = i;
