@@ -38,13 +38,13 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (text === 'Generic') {
+            /*if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
-            }
+            }*/
             if (text === 'hello')
                 {
-                    sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type  to get started.")
+                    sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type the word location to get started.")
                     continue
                 }
             if (text === 'location')
