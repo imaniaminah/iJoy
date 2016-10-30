@@ -91,7 +91,7 @@ class Business = class Business {
         this.name = n;
         this.industry = i;
     }
-};
+}
 
 //unnamed class that takes arguements and creates business object
 class Business = class {
@@ -100,7 +100,7 @@ class Business = class {
         this.name = n;
         this.industry = i;
     }
-};
+}
 
 
 //function to greet user when they say hello, hi, etc. to give a welcome+command greeting
@@ -177,5 +177,7 @@ function sendGenericMessage(sender) {
         }
     })
 }
+
+
 
 
