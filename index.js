@@ -85,7 +85,7 @@ function sendTextMessage(sender, text) {
 }
 
 //class to define a business - not sure about the no arg versions
-class Business = class Business {
+/*class Business = class Business {
     contstructor(l, n , i){
         this.location = l;
         this.name = n;
@@ -100,7 +100,7 @@ class Business = class {
         this.name = n;
         this.industry = i;
     }
-};
+};*/
 
 
 //function to greet user when they say hello, hi, etc. to give a welcome+command greeting
@@ -115,7 +115,7 @@ function sayHello(sender, text)
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id: sender},
+            recipient: {id:sender},
             message: messageData,
         }
     }, function(error, response, body) {
@@ -124,7 +124,6 @@ function sayHello(sender, text)
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         }
-    
     })
     
 }
