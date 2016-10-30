@@ -42,13 +42,20 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
+            if (text === 'hello')
+                {
+                    sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type ... to get started.")
+                    continue
+                }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
+    
         if (event.postback) {
             text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
             continue
         }
+        
     }
     res.sendStatus(200)
 })
@@ -75,6 +82,51 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error)
         }
     })
+}
+
+//class to define a business - not sure about the no arg versions
+class Business = class Business {
+    contstructor(l, n , i){
+        this.location = l;
+        this.name = n;
+        this.industry = i;
+    }
+};
+
+//unnamed class that takes arguements and creates business object
+class Business = class {
+    contstructor(l, n , i){
+        this.location = l;
+        this.name = n;
+        this.industry = i;
+    }
+};
+
+
+//function to greet user when they say hello, hi, etc. to give a welcome+command greeting
+//if there is an error, it might be here since i typed it myself.
+function sayHello(sender, text)
+{
+    messageData = {
+        text:text
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id: sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    
+    })
+    
 }
 
 //Send a Test Message Back as Two Cards
