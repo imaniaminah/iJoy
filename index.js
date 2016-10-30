@@ -52,15 +52,22 @@ app.post('/webhook/', function (req, res) {
                 askLocation()
                 continue
                 }
-            /*if (reply === 'Raleigh') {
+
+            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+        }
+        else if (event.postback && event.postback.payload) {
+            payload = event.postback.payload;
+            if (reply === 'Raleigh') {
+                sayText(sender, "What lovely city!")
                 askIndustry()
                 continue
             }
             if (reply === 'Chapel Hill') {
+                sayText(sender, "What lovely city!")
                 askIndustry()
                 continue
-            }*/
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            }
+            
         }
     
         if (event.postback) {
