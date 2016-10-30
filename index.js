@@ -57,6 +57,7 @@ app.post('/webhook/', function (req, res) {
             if (reply === 'Raleigh') {
                 askIndustry()
                 sayText(sender, 'We are workig on it...!')
+                continue
             }
             if (reply === 'Chapel Hill')
                 askIndustry()
