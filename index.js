@@ -38,6 +38,7 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
+            reply = message.quick_reply.payload
             /*if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
@@ -53,6 +54,16 @@ app.post('/webhook/', function (req, res) {
                    sayText(sender, "What a lovely city!")
                    continue
                 }
+            if (reply === 'Raleigh') {
+                askIndustry()
+                sayText(sender, 'We are workig on it...!')
+            }
+            if (reply === 'Chapel Hill')
+                askIndustry()
+                sayText(sender, 'We are workig on it...!')
+                continue
+            }
+            if (
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
     
