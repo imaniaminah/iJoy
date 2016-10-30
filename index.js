@@ -38,6 +38,7 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
+            
             /*if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
@@ -47,12 +48,18 @@ app.post('/webhook/', function (req, res) {
                     sayText(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type the word location to get started.")
                     continue
                 }
-            if (text === 'location')
-                {
-                   askLocation()
-                   sayText(sender, "What a lovely city!")
-                   continue
+            if (text === 'location') {
+                askLocation()
+                continue
                 }
+            /*if (reply === 'Raleigh') {
+                askIndustry()
+                continue
+            }
+            if (reply === 'Chapel Hill') {
+                askIndustry()
+                continue
+            }*/
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
     
