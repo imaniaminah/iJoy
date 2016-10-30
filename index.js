@@ -44,13 +44,13 @@ app.post('/webhook/', function (req, res) {
             }*/
             if (text === 'hello')
                 {
-                    sayHello(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type the word location to get started.")
+                    sayText(sender, "Hi there! I am Bob Finder. I am an assistant to help you find and support Black Owned Businesses local to your area! Just type the word location to get started.")
                     continue
                 }
             if (text === 'location')
                 {
-                    
                    askLocation()
+                   sayText(sender, "What a lovely city!")
                    continue
                 }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
@@ -112,7 +112,7 @@ class Business = class {
 
 //function to greet user when they say hello, hi, etc. to give a welcome+command greeting
 //if there is an error, it might be here since i typed it myself.
-function sayHello(sender, text)
+function sayText(sender, text)
 {
     messageData = {
         text:text
